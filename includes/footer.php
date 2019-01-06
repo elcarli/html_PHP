@@ -1,39 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <title>
-    Adivina el número
-  </title>
-  <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-  <header id=cabecera>
-    <div>
-      <h1>ADIVINA EL NÚMERO</h1>
-    </div>
-  </header>
- <main>
-    <div>
-      <section id="principal">
-        <figure id="imgleft">
-          <img src="images/5.png">
-        </figure>
-        <div id="mensaje">
-        <form action="index.html" method="post">
-          <div class="motivacion">
-            <p>El número es muy grande, prueba un número más pequeño.</p>
-            <p>¡Vamos, tú puedes! ;)</p>
-          </div>
-          <div id="divboton">
-            <button type="submit">Seguir intentando</button>
-          </div>
-        </form>
-        </div>
-
-      <figure id="imgright">
-        <img src="images/1.png">
-      </figure>
-        
       </section>
 
       <aside id="puntajes">
