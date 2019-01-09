@@ -1,6 +1,9 @@
 <?php
-  include("db.php");
+  include_once("db.php");
   session_start();
+  if(!isset($_SESSION['aleatorio'])){
+      $_SESSION['aleatorio'] = rand(0,100);
+    }
 
   $tipo = $_POST['tipo'];
 
@@ -16,14 +19,14 @@
     $numero = $_POST['numero'];
 
 
-    if ($numero<77){
+    if ($numero< $_SESSION['aleatorio']){
       header("Location: muybajo.php");
     }
-    else if($numero>77){
+    else if($numero> $_SESSION['aleatorio']){
       header("Location: muyalto.php");
     }
-    else if($numero==77) {
-      include ("includes/header.php");
+    else if($numero== $_SESSION['aleatorio']) {
+      include_once ("includes/header.php");
 ?>
       <figure id="imgleft">
         <img src="images/2.png">
@@ -36,10 +39,10 @@
           <form action="respuesta.php" method="post">
             <div id="divvalor">
               <input type="hidden" name="tipo" value="2">
-              <label>Nombre: <input type="text" name="nombre" maxlength="20"></label>             
+              <label>Nombre: <input type="text" name="nombre" autocomplete="off" maxlength="20"></label>             
             </div>
             <div id="divboton">
-              <button type="submit">Guardar</button>
+              <button type="submit" class="btnenviar">Guardar</button>
             </div>
         </form>
         </div>
@@ -50,7 +53,7 @@
   
 <?php
 
-  include ("includes/footer.php");
+include_once ("includes/footer.php");
     }
   } else if ($tipo==2){ //formulario de registro
   
@@ -63,8 +66,9 @@
 
     R::store($puntuacion);
 
-    //se elimina la variable del contador para nuevos usuarios que jueguen
+    //se eliminan las variables de SESSION para nuevos usuarios que jueguen
     unset($_SESSION['contador']);
+    unset($_SESSION['aleatorio']);
 
     //Se redirecciona al usuario al index
     header("Location: index.php");

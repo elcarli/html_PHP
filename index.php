@@ -1,11 +1,4 @@
-<?php 
-  include ("includes/header.php") ;
-  session_start();
-  if(isset($_SESSION['contador'])){
-    echo $_SESSION['contador'];
-  }
-  
-?>
+<?php include_once ("includes/header.php") ?>
 
         <h1>BIENVENIDO</h1>
         <p id="info">Ingrese un número entre 0 y 100</p>
@@ -15,8 +8,8 @@
             <input type="hidden" name="tipo" value="1">
           </div>
           <div id="divboton">
-            <button type="submit">Enviar</button>
+            <button type="submit" class="btnenviar">Enviar</button>
           </div>
         </form>
         
-<?php include ("includes/footer.php") ?>
+<?php include_once ("includes/footer.php") ?>

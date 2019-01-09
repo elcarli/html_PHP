@@ -1,3 +1,1 @@
-Añadir el generador de random
-
 Averiguar sobre multihilos (WebSockets)

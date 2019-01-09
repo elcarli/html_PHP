@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include_once 'db.php';
 
 //Crea un bean, le coloca valores 
 $puntuacion = R::dispense('puntuaciones');
