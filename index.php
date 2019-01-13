@@ -1,4 +1,10 @@
-<?php include_once ("includes/header.php") ?>
+<?php 
+  include_once ("includes/header.php");
+  session_start();
+  if(isset($_SESSION['aleatorio'])){
+    echo $_SESSION['aleatorio'];
+  }
+?>
 
         <h1>BIENVENIDO</h1>
         <p id="info">Ingrese un número entre 0 y 100</p>

@@ -15,10 +15,7 @@
     } else {
       $_SESSION['contador']=1;
     }
-
     $numero = $_POST['numero'];
-
-
     if ($numero< $_SESSION['aleatorio']){
       header("Location: muybajo.php");
     }
@@ -50,15 +47,14 @@
       <figure id="imgright">
         <img src="images/7.png">
       </figure>
-  
 <?php
 
 include_once ("includes/footer.php");
     }
   } else if ($tipo==2){ //formulario de registro
   
-    //si se envió el formulario, se registra la puntuacion en la BD con ayuda del ORM RedBean
-    if(isset($_POST['nombre'])){
+    ///si se envió el formulario, se registra la puntuacion en la BD con ayuda del ORM RedBean
+    if(isset($_POST['nombre']) && isset($_SESSION['contador'])){
 
     $puntuacion = R::dispense('puntuaciones');
     $puntuacion->nombre = $_POST['nombre'];
@@ -66,13 +62,48 @@ include_once ("includes/footer.php");
 
     R::store($puntuacion);
 
+    $mensaje="Se ha guardado tu puntuación :D";
+    $tipo = "success";
+    }
+    else {
+    
+      $mensaje="Algo salió mal, intenta nuevamente :(";
+      $tipo = "error";
+    }
     //se eliminan las variables de SESSION para nuevos usuarios que jueguen
     unset($_SESSION['contador']);
     unset($_SESSION['aleatorio']);
+?>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="sweetalert2.min.js"></script>
+    <title>Información</title>
+  </head>
+  <!-- CARGO EL SWEETALERT-->
+  <body onload="aviso()">
+    <input type="hidden" id="mensaje" value = "<?php echo $mensaje ?>" >
+    <input type="hidden" id="tipo" value = "<?php echo $tipo ?>" >
 
-    //Se redirecciona al usuario al index
-    header("Location: index.php");
-    }
-  }
-  
+    <script>
+      function aviso() {
+        swal({
+          type: document.getElementById("tipo").value,
+          title: "Información",
+          text: document.getElementById("mensaje").value,
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+          closeOnConfirm: false
+        }). then(function(result){
+          window.location.href='index.php';
+          })
+        }
+    </script>
+
+  </body>
+  </html>
+<?php
+  } 
 ?>
